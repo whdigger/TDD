@@ -3,7 +3,10 @@
     "soft-packages": true
   },
   "require": {
-    "php": ">=7.1.0"
+    "php": ">=7.1.0",
+    "roave/security-advisories": "dev-master",
+    "psr/http-message": "^1.0",
+    "zendframework/zend-diactoros": "^1.7"
   },
   "autoload": {
     "psr-4": {
