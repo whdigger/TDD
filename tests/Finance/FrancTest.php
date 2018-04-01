@@ -3,7 +3,7 @@
 use Finance\Franc;
 use PHPUnit\Framework\TestCase;
 
-class DollarTest extends TestCase
+class FrancTest extends TestCase
 {
     public function testMultiplication(): void
     {
@@ -14,7 +14,7 @@ class DollarTest extends TestCase
     
     public function testEquality()
     {
-        $this->assertTrue((new Franc(5))->equals(new Dollar(5)));
-        $this->assertFalse((new Franc(5))->equals(new Dollar(6)));
+        $this->assertTrue((new Franc(5))->equals(new Franc(5)));
+        $this->assertFalse((new Franc(5))->equals(new Franc(6)));
     }
 }
