@@ -5,6 +5,13 @@ namespace Finance;
 abstract class Money
 {
     protected $amount;
+    protected $currency;
+    
+    public function __construct(int $amount, string $currency)
+    {
+        $this->currency = $currency;
+        $this->amount = $amount;
+    }
     
     public function equals(Money $money)
     {
@@ -16,13 +23,21 @@ abstract class Money
     abstract public function times(int $multiplier);
     
     /**
+     * @return string
+     */
+    public function currency(): string
+    {
+        return $this->currency;
+    }
+    
+    /**
      * @param int $amount
      *
      * @return Dollar
      */
-    public static function dollar(int $amount)
+    public static function dollar(int $amount): Dollar
     {
-        return new Dollar($amount);
+        return new Dollar($amount, 'USD');
     }
     
     /**
@@ -30,9 +45,8 @@ abstract class Money
      *
      * @return Franc
      */
-    public static function franc(int $amount)
+    public static function franc(int $amount): Franc
     {
-        return new Franc($amount);
+        return new Franc($amount, 'CHF');
     }
-    
 }

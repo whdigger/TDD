@@ -4,13 +4,13 @@ namespace Finance;
 
 class Dollar extends Money
 {
-    public function __construct(int $amount)
+    public function __construct(int $amount, string $currency)
     {
-        $this->amount = $amount;
+        parent::__construct($amount,$currency);
     }
     
     public function times(int $multiplier)
     {
-        return new $this($this->amount * $multiplier);
+        return self::dollar($this->amount * $multiplier);
     }
 }
