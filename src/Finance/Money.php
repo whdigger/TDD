@@ -36,25 +36,20 @@ class Money
     /**
      * @param int $amount
      *
-     * @return Dollar
+     * @return Money
      */
-    public static function dollar(int $amount): Dollar
+    public static function dollar(int $amount): Money
     {
-        return new Dollar($amount, 'USD');
+        return new Money($amount, 'USD');
     }
     
     /**
      * @param int $amount
      *
-     * @return Franc
+     * @return Money
      */
-    public static function franc(int $amount): Franc
+    public static function franc(int $amount): Money
     {
-        return new Franc($amount, 'CHF');
-    }
-    
-    public function __toString()
-    {
-        return $this->amount . ' ' . $this->currency;
+        return new Money($amount, 'CHF');
     }
 }
