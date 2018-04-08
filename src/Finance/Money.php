@@ -2,7 +2,7 @@
 
 namespace Finance;
 
-class Money
+class Money implements IExpression
 {
     protected $amount;
     protected $currency;
@@ -23,6 +23,11 @@ class Money
     public function times(int $multiplier)
     {
         return new static($this->amount * $multiplier, $this->currency);
+    }
+    
+    public function plus(Money $addend): IExpression
+    {
+        return new Money($this->amount + $addend->amount, $this->currency);
     }
     
     /**
