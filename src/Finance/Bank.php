@@ -6,6 +6,6 @@ class Bank
 {
     public function reduce(IExpression $source, string $to)
     {
-        return Money::dollar(10);
+        return $source->reduce($to);
     }
 }

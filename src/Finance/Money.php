@@ -4,8 +4,8 @@ namespace Finance;
 
 class Money implements IExpression
 {
-    protected $amount;
-    protected $currency;
+    public $amount;
+    public $currency;
     
     public function __construct(int $amount, string $currency)
     {
@@ -25,9 +25,14 @@ class Money implements IExpression
         return new static($this->amount * $multiplier, $this->currency);
     }
     
+    /**
+     * @param Money $addend
+     *
+     * @return IExpression
+     */
     public function plus(Money $addend): IExpression
     {
-        return new Money($this->amount + $addend->amount, $this->currency);
+        return new Sum($this, $addend);
     }
     
     /**
@@ -56,5 +61,10 @@ class Money implements IExpression
     public static function franc(int $amount): Money
     {
         return new Money($amount, 'CHF');
+    }
+    
+    public function reduce(string $to)
+    {
+        return $this;
     }
 }
