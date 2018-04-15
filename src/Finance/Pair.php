@@ -12,6 +12,14 @@ class Pair
         $this->from = $from;
         $this->to = $to;
     }
+    
+    public function equals(Pair $pair)
+    {
+        return $this->from == $pair->from && $this->to == $pair->to;
+    }
+    
+    public function hashCode()
+    {
+        return 0;
+    }
 }
-
-// $array = new SplObjectStorage();

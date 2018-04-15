@@ -65,8 +65,8 @@ class Money implements IExpression
     
     public function reduce(Bank $bank, string $to)
     {
-        $rate = $bank->rate($this->currency, $to);
+        $rate = $this->amount / $bank->rate($this->currency, $to);
         
-        return new Money($this->amount / $rate, $to);
+        return new Money($rate, $to);
     }
 }
