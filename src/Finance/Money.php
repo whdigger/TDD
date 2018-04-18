@@ -5,7 +5,7 @@ namespace Finance;
 class Money implements IExpression
 {
     public $amount;
-    public $currency;
+    private $currency;
     
     public function __construct(int $amount, string $currency)
     {
@@ -20,17 +20,22 @@ class Money implements IExpression
             $this->currency == $money->currency;
     }
     
-    public function times(int $multiplier)
-    {
-        return new static($this->amount * $multiplier, $this->currency);
-    }
-    
     /**
-     * @param Money $addend
+     * @param int $multiplier
      *
      * @return IExpression
      */
-    public function plus(Money $addend): IExpression
+    public function times(int $multiplier)
+    {
+        return new Money($this->amount * $multiplier, $this->currency);
+    }
+    
+    /**
+     * @param IExpression $addend
+     *
+     * @return IExpression
+     */
+    public function plus(IExpression $addend): IExpression
     {
         return new Sum($this, $addend);
     }

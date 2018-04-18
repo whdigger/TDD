@@ -6,16 +6,16 @@ namespace Finance;
 class Sum implements IExpression
 {
     /**
-     * @var Money
+     * @var IExpression
      */
     public $augend;
     
     /**
-     * @var Money
+     * @var IExpression
      */
     public $addend;
     
-    public function __construct(Money $augend, Money $addend)
+    public function __construct(IExpression $augend, IExpression $addend)
     {
         $this->augend = $augend;
         $this->addend = $addend;
@@ -23,7 +23,13 @@ class Sum implements IExpression
     
     public function reduce(Bank $bank, string $to)
     {
-        $amount = $this->augend->amount + $this->addend->amount;
+        $amount = $this->augend->reduce($bank, $to)->amount + $this->addend->reduce($bank, $to)->amount;
+        
         return new Money($amount, $to);
+    }
+    
+    public function plus(IExpression $addend)
+    {
+        return null;
     }
 }
