@@ -30,6 +30,11 @@ class Sum implements IExpression
     
     public function plus(IExpression $addend)
     {
-        return null;
+        return new Sum($this, $addend);
+    }
+    
+    public function times(int $multiply)
+    {
+        return new Sum($this->augend->times($multiply), $this->addend->times($multiply));
     }
 }
